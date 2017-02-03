@@ -21,7 +21,6 @@ public class State {
 	// States are nodes in the search tree, therefore each has a depth.
 	private int depth;
 
-	// ADD: Calculate the hvalue for each State for AStar Search
 
 
 	/**
@@ -60,8 +59,6 @@ public class State {
 		if(!explored[x][y-1] && mazeMatrix[x][y-1] != '%' ){
 			Square neighborSquare = new Square(x,y-1);
 			State successor =  new State (neighborSquare,this,this.getGValue()+1,this.getDepth()+1);
-			int fValue
-			StateFValuePair pairSuccessor = StateFValuePair(neighborSquare,)
 			successors.add(successor);
 		}
 

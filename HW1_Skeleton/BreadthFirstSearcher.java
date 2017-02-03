@@ -44,7 +44,6 @@ public class BreadthFirstSearcher extends Searcher {
 			int exploredx  = s.getX();
 			int exploredy = s.getY();
 			explored [exploredx][exploredy] = true;
-
 			maze.setOneSquare(s.getSquare(),'*');
 
 			if(s.isGoal(maze)){
@@ -54,16 +53,23 @@ public class BreadthFirstSearcher extends Searcher {
 			} else {
 
 				ArrayList<State> successors = s.getSuccessors(explored,maze);
+				this.maxDepthSearched++;
+				this.cost++;
 				for(int i = 0; i< successors.size();i++){
+
 					State successor = successors.get(i);
-					queue.add(successor);
+					int succesorX = successor.getX();
+					int succesorY = successor.getY();
+					if(!explored[succesorX][succesorY]){
+
+						queue.add(successor);
+						this.maxSizeOfFrontier = queue.size();
+						this.noOfNodesExpanded++;
+					}
+
 				}
 
 
-				this.maxDepthSearched++;
-				this.maxSizeOfFrontier+=successors.size();
-				this.noOfNodesExpanded+=successors.size();
-				this.cost+=successors.size();
 
 			}
 			// TODO update the maze if a solution found
